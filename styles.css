@@ -70,11 +70,16 @@ body{
     --Desaturated-blue: hsl(235, 45%, 61%);
     --Pale-Blue: hsl(236, 100%, 87%);
 
+
+    /*Body Copy*/
+
+    --card-titles : 18px;
+
 }
 
 main{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 50px 70px ;
@@ -85,7 +90,7 @@ main{
 /*Cards display */
 
 .card{
-    border-radius: 15px;
+    border-radius: 18px;
     background-color: var(--Dark-blue);
     display: flex;
     flex-direction: column;
@@ -129,6 +134,14 @@ main{
     background-color: var(--Soft-orange-self-care);
     background-image: url(icon-self-care.svg);
     
+}
+
+.profile__desc{
+
+}
+
+.porfile__report{
+
 }
 
 /*first card*/
@@ -186,7 +199,26 @@ main{
 }
 
 .timers{
-margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    height: 60%;
+    justify-content: space-between;
+
+}
+
+
+.topic__title{
+    font-size: var(--card-titles);
+    font-weight: 500;
+}
+
+.quantity{
+    font-size: 4rem;
+}
+
+.lastTime{
+    
 }
 
 
@@ -206,5 +238,19 @@ margin-top: 30px;
         background-color: blueviolet;
         
         grid-row: 1 / 2;
+    }
+
+
+
+
+
+
+
+
+    .timers{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    
     }
 }
