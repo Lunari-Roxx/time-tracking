@@ -271,7 +271,7 @@ main{
 
     main{
         grid-template-columns: 1fr;
-        height: 200vh;
+        height: auto;
     }
 
 
