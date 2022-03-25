@@ -272,6 +272,7 @@ main{
     main{
         grid-template-columns: 1fr;
         height: auto;
+        padding: 50px 40px;
     }
 
 
