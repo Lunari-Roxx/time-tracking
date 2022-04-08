@@ -218,6 +218,7 @@ main{
     padding: 20px;
     display: flex;
     flex-direction: column;
+    transition: all 1s;
 }
 
 .card__content:hover{
