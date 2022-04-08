@@ -89,7 +89,7 @@ function displayTimers(interval, data) {
             for (let i = 0; i < timers.length; i++) {
                 let element = data[i];
                 timers[i].innerHTML = `<p class="quantity">${element.timeframes.daily.current}hs</p>
-                                    <p class="lastTime">last day ${timers[i].innerHTML = data[i].timeframes.daily.previous}hs</p>`
+                                    <p class="lastTime">Yesterday ${timers[i].innerHTML = data[i].timeframes.daily.previous}hs</p>`
 
             }
 
