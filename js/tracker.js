@@ -6,22 +6,26 @@ const btnWeekly = document.querySelector("#weekly");
 const btnMonthly = document.querySelector("#monthly");
 
 
+//TimerBoxesHTML
+
+const timers = document.querySelectorAll(".timers");
+
+
 
 
 // addEventListeners
 
 
-// starts with weekly values
+//event onLoad starts with weekly values
 
 
-window.addEventListener('load' , () => {
+window.addEventListener('load', () => {
     fetch('../data.json')
-    .then(response => response.json())
-    .then(response => {
-        console.log(response)
-        console.log(createCardTimers("daily",response))
-        
-    })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            displayTimers("weekly", response);
+        })
 })
 
 
@@ -31,69 +35,95 @@ window.addEventListener('load' , () => {
 btnDaily.addEventListener('click', () => {
 
     fetch('../data.json')
-    .then(response => response.json())
-    .then(response => console.log(response))
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            displayTimers("daily", response)
+        })
 
-    
+
+
 })
 
 
 // weekly
 
+btnWeekly.addEventListener('click', () => {
+
+    fetch('../data.json')
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            displayTimers("weekly", response)
+        })
+
+
+
+})
+
+btnMonthly.addEventListener('click', () => {
+
+    fetch('../data.json')
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            displayTimers("monthly", response)
+        })
+
+
+
+})
+
 
 //Monthly
 
 
-/*
-<div class="card">
-            <div class="card__header"></div>
-            <div class="card__content">
-                <div id="work-card" class="topic">
-                    <h2 class="topic__title">Work</h2>
-                    <img src="points-icon.svg" alt="" class="point">
-                </div>
-                <div class="timers">
-                    <p class="quantity">12hs</p>
-                    <p class="lastTime"> otro dia</p>
-                </div>
-            </div>
-        </div>
-*/
+//the interval will be "daily", weekly and "monthly, by default it displays weekly values "
 
-function createCardTimers(interval , data){
+function displayTimers(interval, data) {
 
-    /*
-const card = `<div class="card">
-<div class="card__header"></div>
-<div class="card__content">
-    <div id="work-card" class="topic">
-        <h2 class="topic__title">${data.title}</h2>
-        <img src="points-icon.svg" alt="" class="point">
-    </div>
-    <div class="timers">
-        <p class="quantity">${data.timeframes.interval.current}</p>
-        <p class="lastTime">${data.timeframes.interval.previous}</p>
-    </div>
-</div>
-</div>`
-*/
-    let card = null;
-    if(interval === "daily"){
-         card = `<div class="card">
-        <div class="card__header"></div>
-        <div class="card__content">
-            <div id="work-card" class="topic">
-                <h2 class="topic__title">${data[0].title}</h2>
-                <img src="points-icon.svg" alt="" class="point">
-            </div>
-            <div class="timers">
-                <p class="quantity">${data[0].timeframes.daily.current}</p>
-                <p class="lastTime">${data[0].timeframes.daily.current}</p>
-            </div>
-        </div>
-    </div>`
+    switch (interval) {
+        case "daily":
+
+
+            for (let i = 0; i < timers.length; i++) {
+                let element = data[i];
+                timers[i].innerHTML = `<p class="quantity">${element.timeframes.daily.current}hs</p>
+                                    <p class="lastTime">last day ${timers[i].innerHTML = data[i].timeframes.daily.previous}hs</p>`
+
+            }
+
+
+            break;
+
+        case "weekly":
+            for (let i = 0; i < timers.length; i++) {
+                let element = data[i];
+                timers[i].innerHTML = `<p class="quantity">${element.timeframes.weekly.current}hs</p>
+                                        <p class="lastTime">last week ${timers[i].innerHTML = data[i].timeframes.weekly.previous}hs</p>`
+
+            }
+            break;
+
+        case "monthly":
+            for (let i = 0; i < timers.length; i++) {
+                let element = data[i];
+                timers[i].innerHTML = `<p class="quantity">${element.timeframes.monthly.current}hs</p>
+                                    <p class="lastTime">last month ${timers[i].innerHTML = data[i].timeframes.monthly.previous}hs</p>`
+
+            }
+            break;
+
+            default:
+                for (let i = 0; i < timers.length; i++) {
+                    let element = data[i];
+                    timers[i].innerHTML = `<p class="quantity">${element.timeframes.weekly.current}hs</p>
+                                            <p class="lastTime">last week ${timers[i].innerHTML = data[i].timeframes.weekly.previous}hs</p>`
+    
+                }
+                break;
+
     }
 
-return card;
-
 }
+
